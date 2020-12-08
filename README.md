@@ -1,2 +1,2 @@
-# FirebaseFirestore-Publisher-Wrappers
-Simple Firestore Document Snapshot &amp; Query Wrapper for Publisher pattern
+## FirebaseFirestore Publisher Extension
+Simple Firestore Document Snapshot &amp; Query Extension for Publisher pattern
