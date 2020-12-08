@@ -1,2 +1,2 @@
-## FirebaseFirestore Publisher Extension
-Simple Firestore Document Snapshot &amp; Query Extension for Publisher pattern
+## Firebase Publisher Extension
+Simple Firestore & Storage Document Snapshot &amp; Query Extension for Publisher pattern
