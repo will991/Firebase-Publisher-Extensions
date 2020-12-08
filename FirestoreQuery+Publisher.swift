@@ -11,22 +11,21 @@ import Combine
 
 extension Query {
     
-    public var queryPublisher: AnyPublisher<[QueryDocumentSnapshot], Never> {
+    public var queryPublisher: AnyPublisher<[QueryDocumentSnapshot], Error> {
         return snapshotPublisher()
     }
     
-    public func snapshotPublisher(batchSize: Int? = nil) -> AnyPublisher<[QueryDocumentSnapshot], Never> {
+    public func snapshotPublisher(batchSize: Int? = nil) -> AnyPublisher<[QueryDocumentSnapshot], Error> {
         let ref = self
-        return Future<[QueryDocumentSnapshot], Never> { promise in
+        return Future<[QueryDocumentSnapshot], Error> { promise in
             DispatchQueue.global(qos: .userInitiated).async {
                 if let batchSize = batchSize {
                     ref.limit(to: batchSize)
                 }
 
                 ref.getDocuments { (querySnapshot, error) in
-                    guard error == nil else {
-                        promise(.success([]))
-                        return
+                    if let error = error {
+                        promise(.failure(error))
                     }
                     promise(.success(querySnapshot!.documents))
                 }
